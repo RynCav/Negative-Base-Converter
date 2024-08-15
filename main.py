@@ -77,14 +77,14 @@ def frac_neg_base(number, base):
     return new
 
 #places the radix point in the number
-def get_number(self, base, goal):
+def get_number(number, base, goal):
     for i in range(0, len(self)):
-        if int_neg_base(self[:i][::-1], base) + frac_neg_base(self[i:], base) == goal:
-            return self[:i] + "." + self[i:]
+        if int_neg_base(self[:i][::-1], base) + frac_neg_base(number[i:], base) == goal:
+            return number[:i] + "." + number[i:]
 
 #Gets the new negative base number
-def new_number(self, base):
-    new = str(pos_dec(abs(int(self)), abs(base)) + pos_frac(abs(self) % 1, abs(base)))[::-1]
+def new_number(number, base):
+    new = str(pos_dec(abs(int(number)), abs(base)) + pos_frac(abs(number) % 1, abs(base)))[::-1]
     if self < 0:
         new = convert_dec("-" + new, abs(base))
     else:
@@ -92,8 +92,8 @@ def new_number(self, base):
     return new
 
 #Converts base 10 fractional numbers to a negative base
-def neg_frac(self, base):
-    final_number = get_number(neg_int(new_number(self, base), base), base, self)
+def neg_frac(number, base):
+    final_number = get_number(neg_int(new_number(number, base), base), base, number)
     return final_number
 
 #Gets the user input and prints the result to the screen
